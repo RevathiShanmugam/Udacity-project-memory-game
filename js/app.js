@@ -1,3 +1,29 @@
+//Timer
+var min = 0;
+var sec = 0;
+var hours = 0;
+var letsStop = 0;
+window.onload = function() {
+    setInterval(function() {
+        if (letsStop !== 1) {
+            sec++;
+            if (sec === 60) {
+                min++;
+                sec = 0;
+            }
+            if (min === 60) {
+                hours++;
+                min = 0;
+                sec = 0;
+            }
+            $('.timer').html(hours + ':' + min + ':' + sec);
+            console.log(min);
+            console.log(sec);
+        }
+
+    }, 1000);
+};
+
 /*
  * Create a list that holds all of your cards
  */
