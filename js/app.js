@@ -37,6 +37,32 @@ var openCards = [];
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+$('.deck').each(function() {
+    $(this).find('li').each(function() {
+        cards.push($(this));
+    });
+});
+var temp = 0;
+
+cardsName = shuffle(cardsName);
+
+var cardNumber = 0;
+$('.deck').each(function() {
+    $(this).find('li').find('i').each(function() {
+        $(this).removeAttr('class');
+        $(this).addClass(cardsName[cardNumber]);
+        cardNumber++;
+    });
+});
+
+$('.deck').each(function() {
+    $(this).find('li').find('i').each(function() {
+        var tempClass = $($(cards[temp][0]).find('i')[0]).attr('class');
+        $(this).removeAttr('class');
+        $(this).addClass(tempClass);
+        temp++;
+    });
+});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
