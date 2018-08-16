@@ -1,20 +1,21 @@
 # Memory Game Project
 
-## Table of Contents
+## Project purpose
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This game was built as a Udacity Course project. The purpose of the project is to demonstrate mastery of HTML, CSS, and JavaScript.
 
-## Instructions
+## How to Load the App
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Clone or download the code repository at https://github.com/revathishanmugam/Udacity-project-memory-game.git. If downloaded, unzip the folder and run index.html in your browser.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## How to play the game
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+The game board consists of 16 cards.
+ * The player clicks one card over to reveal its underlying symbol
+ * The player then turns over a second card, trying to find the corresponding card with the same symbol
+ * If the cards match, both cards stay flipped over
+ * If the cards do not match, both cards are returned to their initial hidden state
+ * The game ends once all cards have been correctly matched
+ * The stars are displayed based on the move count
+ * When the game ends, a pop-up appears with the elapsed time and final star rating
+ * The game can be restarted at any time by clicking the restart button
