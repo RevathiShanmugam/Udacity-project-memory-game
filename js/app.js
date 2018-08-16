@@ -90,9 +90,85 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+//Click event
+var moves = 0;
+showCardOnClick = function(clickEvent) {
+    clickEvent.on('click', function() {
+        moves++;
+        //Display starts based on no of moves
+        if (moves === 16) {
+
+        } else if (moves > 16 && moves <= 25) {
+            $('section ul li').hide();
+            $('section ul').append('<li><i class="fa fa-star"></i></li>');
+            $('section ul').append('<li><i class="fa fa-star"></i></li>');
+            stars = 2;
+        } else if (moves > 25) {
+            $('section ul li').hide();
+            $('section ul').append('<li><i class="fa fa-star"></i></li>');
+            stars = 1;
+        }
+        
+        $('.moves').html(moves);
+        if ((openCards.length % 2) === 0) {
+            $(this).addClass('show open animated wobble');
+            $(this).off('click');
+            openCards.push($(this));
+        } else if (openCards.length !== 0) {
+            $(this).addClass('show open animated wobble');
+
+            var self = $(this);
+            for (var i = 0; i < openCards.length; i++) {
+                if (openCards[i].find('i').attr('class') === self.find('i').attr('class')) {
+                    self.removeClass('animated wobble');
+                    self.addClass('show match animated rubberBand');
+                    openCards[i].removeClass('animated wobble');
+                    openCards[i].addClass('show match animated rubberBand');
+                    console.log('match');
+                    $(this).off('click');
+                    openCards = [];
+                    break;
+                } else {
+                    self.addClass('show open animated wobble');
+                    removeProperties(self);
+                    openCards[0].on('click', showCardOnClick(openCards[0]));
+                    console.log('no match');
+                }
+            }
+        }
+        //if all cards have matched, display a message with the final score
+        if ($('.deck').find('.match').length === 16) {
+            setTimeout(function() {
+                $('.deck').each(function() {
+                    swal({
+                        title: 'Congratulations!!!',
+                        type: 'success',
+                        text: 'You won the game. Moves: ' + moves + '. Time: ' + hours + ' Hours ' + min + ' Minutes and ' + sec + ' Seconds',
+                        allowOutsideClick: false,
+                        showCancelButton: true,
+                        confirmButtonText: 'Play Again',
+                        confirmButtonColor: '#0000FF',
+                        cancelButtonText: 'Close',
+                        cancelButtonColor: '#FF0000'
+                    }).then(function() {
+                        location.reload();
+                    }, function(dismiss) {
+                        console.log('Yes');
+                    });
+
+                });
+            }, 300);
+            letsStop = 1;
+            $('.timer').hide();
+            $('.timer').html('0:0:0');
+            $('.timer').show();
+        }
+    });
+};
 
 
 
+//Reload or reset
 $('.restart').on('click', function() {
     location.reload();
 });
