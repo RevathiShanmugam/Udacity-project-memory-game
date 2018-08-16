@@ -166,7 +166,10 @@ showCardOnClick = function(clickEvent) {
     });
 };
 
-
+//calling the event listener
+for (var i = 0; i < cards.length; i++) {
+    cards[i].on('click', showCardOnClick(cards[i]));
+}
 
 //Reload or reset
 $('.restart').on('click', function() {
